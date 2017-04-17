@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 
-import { ArrayLayoutWidget } from '../../widget';
+import {ArrayLayoutWidget} from '../../widget';
 
 @Component({
   selector: 'sf-array-widget',
