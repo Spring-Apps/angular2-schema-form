@@ -4,7 +4,7 @@
   "description": "Angular2 Schema Form (DISCLAIMER: it is not related to angular-schema-form)",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
-  "scripts": {
+  "xxscripts": {
     "ng": "ng",
     "start": "ng serve  --proxy-config proxy.conf.json",
     "build": "ng build",
@@ -13,7 +13,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
-  "xxscripts": {
+  "scripts": {
     "clean": "rimraf dist/",
     "test": "cd tests/src/app && ln -s ../../../src/ ./lib && cd ../.. && ng test --single-run",
     "build:aot": "ngc -p tsconfig.json",
