@@ -17,8 +17,8 @@ import {
   Validator
 } from './model';
 
-import { SchemaValidatorFactory, ZSchemaValidatorFactory } from './schemavalidatorfactory';
-import { WidgetFactory } from './widgetfactory';
+import {SchemaValidatorFactory, ZSchemaValidatorFactory} from './schemavalidatorfactory';
+import {WidgetFactory} from './widgetfactory';
 
 export function useFactory(schemaValidatorFactory, validatorRegistry) {
   return new FormPropertyFactory(schemaValidatorFactory, validatorRegistry);
@@ -26,8 +26,11 @@ export function useFactory(schemaValidatorFactory, validatorRegistry) {
 
 @Component({
   selector: 'sf-form',
-  template: `<sf-form-element
-  *ngIf="rootProperty" [formProperty]="rootProperty"></sf-form-element>`,
+  template: `
+    <sf-form-element
+      *ngIf="rootProperty"
+      [formProperty]="rootProperty">
+    </sf-form-element>`,
   providers: [
     ActionRegistry,
     ValidatorRegistry,
@@ -49,20 +52,19 @@ export class FormComponent implements OnChanges {
 
   @Input() model: any;
 
-  @Input() actions: {[actionId: string]: Action} = {};
+  @Input() actions: { [actionId: string]: Action } = {};
 
-  @Input() validators: {[path: string]: Validator} = {};
+  @Input() validators: { [path: string]: Validator } = {};
 
-  @Output() onChange = new EventEmitter<{value: any}>();
+  @Output() onChange = new EventEmitter<{ value: any }>();
 
   rootProperty: FormProperty = null;
 
-  constructor(
-    private formPropertyFactory: FormPropertyFactory,
-    private actionRegistry: ActionRegistry,
-    private validatorRegistry: ValidatorRegistry,
-    private cdr: ChangeDetectorRef
-  ) { }
+  constructor(private formPropertyFactory: FormPropertyFactory,
+              private actionRegistry: ActionRegistry,
+              private validatorRegistry: ValidatorRegistry,
+              private cdr: ChangeDetectorRef) {
+  }
 
   ngOnChanges(changes: any) {
     console.log(changes);
@@ -82,7 +84,9 @@ export class FormComponent implements OnChanges {
       console.log(this.schema, changes.schema);
       SchemaPreprocessor.preprocess(this.schema);
       this.rootProperty = this.formPropertyFactory.createProperty(this.schema);
-      this.rootProperty.valueChanges.subscribe(value => { this.onChange.emit({value: value}); });
+      this.rootProperty.valueChanges.subscribe(value => {
+        this.onChange.emit({value: value});
+      });
     }
 
     if (this.schema && (changes.model || changes.schema )) {

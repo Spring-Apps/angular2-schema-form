@@ -8,7 +8,7 @@ import {
   FormControl
 } from '@angular/forms';
 
-import { Widget } from './widget';
+import {Widget} from './widget';
 
 import {
   ActionRegistry,
@@ -17,13 +17,18 @@ import {
 
 @Component({
   selector: 'sf-form-element',
-  template: `<div *ngIf="formProperty.visible">
-	<sf-widget-chooser
-	(widgetInstanciated)="onWidgetInstanciated($event)"
-	[widgetInfo]="formProperty.schema.widget">
-	</sf-widget-chooser>
-	<button *ngFor="let button of buttons" (click)="button.action($event)">{{button.label}}</button>
-</div>`
+  template: `
+    <div *ngIf="formProperty.visible">
+      <sf-widget-chooser
+        (widgetInstanciated)="onWidgetInstanciated($event)"
+        [widgetInfo]="formProperty.schema.widget">
+      </sf-widget-chooser>
+      <button
+        *ngFor="let button of buttons"
+        (click)="button.action($event)">
+        {{button.label}}
+      </button>
+    </div>`
 })
 export class FormElementComponent implements OnInit {
 
@@ -37,7 +42,8 @@ export class FormElementComponent implements OnInit {
   private buttons = [];
 
 
-  constructor(private actionRegistry: ActionRegistry) {}
+  constructor(private actionRegistry: ActionRegistry) {
+  }
 
   ngOnInit() {
     this.parseButtons();
