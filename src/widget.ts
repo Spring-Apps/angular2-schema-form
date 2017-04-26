@@ -1,6 +1,6 @@
-import { AfterViewInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
-import { ArrayProperty, FormProperty, ObjectProperty } from './model';
+import {AfterViewInit} from '@angular/core';
+import {FormControl} from '@angular/forms';
+import {ArrayProperty, FormProperty, ObjectProperty} from './model';
 
 export abstract class Widget<T extends FormProperty> {
   formProperty: T;
@@ -23,11 +23,15 @@ export class ControlWidget extends Widget<FormProperty> implements AfterViewInit
     this.formProperty.errorsChanges.subscribe((errors) => {
       control.setErrors(errors, true);
     });
-    control.valueChanges.subscribe((newValue) => { this.formProperty.setValue(newValue, false); });
+    control.valueChanges.subscribe((newValue) => {
+      this.formProperty.setValue(newValue, false);
+    });
   }
 
 }
 
-export class ArrayLayoutWidget extends Widget<ArrayProperty> {}
+export class ArrayLayoutWidget extends Widget<ArrayProperty> {
+}
 
-export class ObjectLayoutWidget extends Widget<ObjectProperty> {}
+export class ObjectLayoutWidget extends Widget<ObjectProperty> {
+}
