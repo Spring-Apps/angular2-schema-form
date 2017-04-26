@@ -2,9 +2,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'sf-default-field',
-  template: `
-    <p>Cannot find valid type for {{name}}
-  `
+  template: `<p>Unknow type</p>`
 })
 export class DefaultWidget {
     name: string;
